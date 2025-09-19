@@ -7,7 +7,7 @@ class Country(models.Model):
     abrev = models.CharField(max_length=10, blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-
++
 
     def __str__(self):
         return self.name or "Unnamed Country"
