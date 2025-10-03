@@ -60,7 +60,7 @@ ROOT_URLCONF = 'banking.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], # agrega esta línea,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,7 +71,10 @@ TEMPLATES = [
         },
     },
 ]
-
+# STATIC FILES CONFIGURATION
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']  
+STATIC_ROOT = BASE_DIR / 'staticfiles'   
 WSGI_APPLICATION = 'banking.wsgi.application'
 
 

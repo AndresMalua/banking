@@ -5,11 +5,12 @@ from django.utils import timezone
 class Country(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     abrev = models.CharField(max_length=10, blank=True, null=True)
+    status = models.BooleanField(default=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.name or "Unnamed Country"} {self.abrev or "Unnamed Country"}"
+        return f"{self.name or "Unnamed Country"} {self.abrev or "Unnamed Country"}{'Active' if self.status else 'Inactive'}"
 
 
 # Luego Department que depende de Country
@@ -21,7 +22,7 @@ class Department(models.Model):
     deleted_at = models.DateTimeField(blank=True, null=True)
 
     id_country = models.ForeignKey(
-        Country,  # Ahora Country está definido arriba
+        Country, 
         on_delete=models.CASCADE,
         blank=True,
         null=True,
@@ -38,7 +39,6 @@ class City(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # CORREGIDO: indentación correcta (4 espacios)
     id_department = models.ForeignKey(
         Department,
         on_delete=models.CASCADE,
